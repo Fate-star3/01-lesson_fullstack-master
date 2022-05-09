@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 每隔过久就定时一下
+启动一个定时器（setInterval）， 在点击停下按钮后， 消除定时器    -->
+    <button class="btn">停止</button>
+
+    <script>
+        let btn = document.querySelector('.btn')
+        btn.addEventListener('click', function () {
+            clearInterval(time)
+        })
+
+        // let i = 1
+        var i = 1
+        console.log(window.i);
+        console.log(this);
+        var time = setInterval(() => {
+            // console.log(1);
+            console.log(this.i++);
+        }, 1000)
+    </script>
+</body>
+
+</html>

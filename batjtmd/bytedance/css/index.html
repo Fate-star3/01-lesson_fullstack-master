@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .specified-scope {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .specified-scope li {
+            position: relative;
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            text-align: center;
+            background-color: black;
+            /* border-bottom: 10px solid #000; */
+            /* box-sizing: border-box; */
+        }
+
+        .specified-scope li:nth-child(odd) {
+            background-color: #f66;
+        }
+
+        .specified-scope li:nth-child(even) {
+            background-color: #66f;
+        }
+
+        .specified-scope li:hover {
+            background-color: pink;
+        }
+
+        .specified-scope li::after {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: '';
+            display: block;
+            width: 300px;
+            height: 1px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bruce">
+        <ul class="specified-scope">
+            <li>10001</li>
+            <li>10002</li>
+            <li>10003</li>
+            <li>10004</li>
+            <li>10005</li>
+            <li>10006</li>
+            <li>10007</li>
+            <li>10008</li>
+        </ul>
+    </div>
+</body>
+
+</html>
