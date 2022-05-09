@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-Server</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table">
+            <caption>文章表</caption>
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>标题</td>
+                    <td>作者</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-8">1</div>
+            <div class="col-md-4"> 2</div>
+        </div>
+        <form name="postForm">
+            <div class="form-group">
+                <label for="titleInput">标题</label>
+                <input type="text" name="title" class="form-control" id="titleInput" placeholder="请输入标题" required>
+            </div>
+            <div class="form-group">
+                <label for="authorInput">作者</label>
+                <input type="text" name="author" class="form-control" id="authorInput" placeholder="请输入作者" required>
+            </div>
+            <button type="submit" class="btn btn-default">添加</button>
+        </form>
+    </div>
+    <!-- 布局的类名 -->
+    <a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer" id="linkA">去百度</a>
+
+    <script>
+        console.log(0/'0');
+        let id = 3
+        // 专门来查询form表单的API 
+        // forms 返回当前文档中的 <form>元素的一个集合(一个 HTMLCollection)。
+        const oForm = document.forms['postForm'];
+        const linka = document.querySelector('#linkA')
+        const oTbody = document.querySelector('table tbody')
+        // console.log(oForm);
+
+
+        // 封装一下增加表单内容的功能函数
+        let getPostHtml = (post) => `
+                <tr>
+                    <td>${post.id}</td>
+                    <td>${post.title}</td>
+                    <td>${post.author}</td>
+                </tr>
+            `
+
+        oForm.addEventListener('submit', function (e) {
+            // form 默认会向后端提交
+            console.log('请先不要向后端提交数据');
+            e.preventDefault()
+            const title = oForm['title'].value.trim()
+            console.log(title);
+            const author = oForm['author'].value.trim()
+
+            oTbody.innerHTML += getPostHtml({ id, title, author }) //使用了解构赋值
+            ++id
+
+            // reset 方法可以重置一个表单内的所有表单控件的值到初始状态.
+            oForm.reset() //清空表单
+        });
+
+
+
+
+        linka.addEventListener('click', (e) => {
+            e.preventDefault()//阻止默认行为
+        })
+
+
+        // Promise<Response> fetch(input[, init]);
+        // fetch() 必须接受一个参数——资源的路径。无论请求成功与否，它都返回一个 Promise 对象，resolve 对应请求的 Response。你也可以传一个可选的第二个参数 init（参见 Request）。
+        // 返回值:一个 Promise，resolve 时回传 Response 对象。
+        // 第一个参数：一个 USVString 字符串(包含要获取资源的 URL。一些浏览器会接受 blob: 和 data: 作为 schemes；)或者一个 Request 对象。
+        fetch('http://localhost:3000/posts')
+            .then(data => data.json())
+            .then(data => {
+                // 前端和后端通信的数据格式是 json 
+                // let post = data
+                // map() 方法创建一个新数组，这个新数组由原数组中的每个元素都调用一次提供的函数后的返回值组成
+                oTbody.innerHTML = data.map(post => getPostHtml(post)).join('')
+            })
+
+            // 完成功能后，可以看一下是否可以优化
+    </script>
+</body>
+
+</html>

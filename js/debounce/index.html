@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 使用HTML + JS 实现百度功能 -->
+    <input type="text" id="undebounce" autofocus placeholder="请输入搜索内容">
+    <label class="" for="undebounce">
+        <button>百度一下</button>
+    </label>
+    <button id="cancle">取消搜索事件绑定</button>
+    <script>
+        /*
+         *@func 搜索功能
+         *@params {content：string} 关键字
+         *@return 返回结果列表
+        */
+        function ajax(content) {
+            console.log('准备实时搜索' + content);
+        }
+        function fn(event) {
+                let keyword = event.target.value
+                // let keyword = this.value
+                // console.log(keyword);
+                // 能封装就封装 解耦
+                // 如果流程性代码超过10行，一定封装
+                // 搜索功能比较复杂 封装！
+                ajax(keyword)
+                // console.log(e.target.value);
+            }
+        window.addEventListener('load', function () {
+            let input = document.querySelector('#undebounce')
+            let cancel = document.querySelector('#cancle')
+            input.addEventListener('input', fn)
+            
+            input.addEventListener('keydown', function (e) {
+                if (e.keyCode == 13) {
+                    console.log('搜索吧');
+                    location.assign('https://www.baidu.com/')
+                }
+            })
+            // 因为一个事件源可以绑定多个匿名事件处理函数，所以移除侦听器的时候需要提供相同的 type 和 listener(事件处理函数) 
+            cancel.addEventListener('click', function () {
+                input.removeEventListener('input', fn)
+            })
+        })
+    </script>
+</body>
+
+</html>

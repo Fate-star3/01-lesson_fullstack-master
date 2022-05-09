@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送花</title>
+</head>
+
+<body>
+    <script>
+        // 浏览器是是JS的运行环境，浏览器是由渲染引擎和JS引擎组成的
+        // 变量a b c都是全局变量
+        var a = 1
+        let b = 2
+        const PI = 3.14
+        function foo() {
+            let c = 3 //局部变量
+        }
+        // console.log(c);//error
+        const obj = {
+            name: "张三",
+            age: 18,
+            sex: '男',
+            id: undefined,
+            sayHi: function () {
+                console.log("hello" + this.name);
+            },
+            sendFlower(target) {
+                // console.log(target)
+                const flower = new Flower('红玫瑰', 99);
+                target.receiveFlower(obj,flower);//在这里调用了对象xiaomei的方法
+            }
+        }
+        // console.log(obj);
+        // console.log(obj.id);
+        // obj.sayHi()
+
+
+        const xiaomei = {
+            name: '小美',
+            age: 18,
+            receiveFlower(sender, flower) {
+                console.log(this.name + '收到了' + sender.name + '送的' + flower.num + '朵' + flower.type + '花');
+            }
+        }
+        // obj.sendFlower(xiaomei);
+        // xiaomei.receiveFlower(obj)
+
+        const xiaohong = {
+            name: '小红',
+            hometown: '九江',
+            // 接口 小红和小美有一样的接口方法
+            receiveFlower(sender, flower) {
+                // console.log(this.name + '收到了' + target.name + '送的花');
+                // target.receiveFlower(obj);
+                if (sender.name == '张三') {
+                    console.log("我们在一起把");
+                }
+                xiaomei.receiveFlower(sender, flower)
+            }
+        }
+        obj.sendFlower(xiaohong)
+
+        // class Flower {
+        //     constructor() {
+
+        //     }
+        // }
+        function Flower(type, num) {
+            // console.log(this);//指向Flower构造函数对象
+            this.type = type
+            this.num = num
+        }
+        let s = new Flower('油菜花', 3)
+        // console.log(s);
+        // console.log(s.type);
+    </script>
+</body>
+
+</html>

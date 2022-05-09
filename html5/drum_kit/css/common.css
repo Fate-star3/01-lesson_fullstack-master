@@ -1,0 +1,47 @@
+/* css 初始化 将浏览器设置的内外边距清除 */
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100%;
+    font-size: 10px;
+    background: url('../background.jpg') bottom center ;
+    background-size: cover;
+    
+}
+.keys {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;/* vh viewportHeight 是相对单位，px是绝对单位 */
+    /* background-color: pink; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+.key {
+    /* rem 相对于HTML的fontsize的单位   在下面是相当于4px*/
+    border: 0.4rem solid #ccc;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, .4);
+    color: white;
+    width: 10rem;
+    height: 10rem;
+    text-align: center;
+    line-height: 5rem;
+    font-size: 1.5rem;
+    margin: 1rem;
+    text-shadow: 0 0 0.5rem black;
+}
+.key div {
+    font-size: 4rem;
+}
+.key .sound {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    color: #ffc600;
+}
+.playing {
+    border: 0.4rem solid yellow;
+}

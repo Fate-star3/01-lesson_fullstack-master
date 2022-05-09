@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <img src="https://img.jbzj.com/file_images/article/202107/202107290948063.png" alt="">
+<body>
+    <!--  Element.getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置。 -->
+    <script>
+        // 1.返回的值是一个DOMRect对象，它是getClientRects()元素返回的矩形的并集，即与元素关联的CSS边框。其结果是，其包含整个元件，具有只读的最小
+        // 矩形left，top，right，bottom，x，y，width，和height性质描述在像素整体边界框。除视口左上角width和height相对于视口左上角的属性。
+        // 2.空边框完全被忽略。如果所有元素的边框都为空，则返回一个带有 width和height都为0的矩形，其中top和left是该元素的第一个CSS框（按内容顺序）
+        // 的border-box的左上角。
+        // 3.在计算边界矩形时，考虑了视口区域（或任何其他可滚动元素）已完成的滚动量。这意味着，矩形的边界边（top，left，bottom和right）改变它们的
+        // 值，每次滚动位置的变化（因为它们的值是相对于视而不是绝对的）。如果需要相对于文档左上角的边界矩形，只需将当前滚动位置添加到top和left属性
+        // （这些可以使用window.scrollX和window.scrollY获取）以获得与当前滚动位置无关的边界矩形。
+        // 4.需要高跨浏览器兼容性的脚本可以使用window.pageXOffset和window.pageYOffset而不是window.scrollX和window.scrollY。无法访问这些属性的
+        // 脚本可以使用如下代码：
+        // For scrollX
+        (((t = document.documentElement) || (t = document.body.parentNode))
+            && typeof t.scrollLeft == 'number' ? t : document.body).scrollLeft
+
+            // For scrollY
+            (((t = document.documentElement) || (t = document.body.parentNode))
+                && typeof t.scrollTop == 'number' ? t : document.body).scrollTop
+        // 注意：所有的返回值都没有单位，纯数值
+
+
+        // 总结
+        // 1.DOMRect可以在现代浏览器中修改返回的对象。对于有效返回的旧版本，情况并非如此DOMRectReadOnly。使用IE和Edge，无法向返回的ClientRect 
+        // MSDN: ClientRect 对象添加缺少的属性可防止回填x和y。
+        // 2.由于兼容性问题（见下文），它是最安全的依靠唯一性left，top，right，和bottom。
+        // 返回的DOMRect对象中的属性不是自己的属性。 当in运算符和for … in将找到返回的属性时，其他API（如Object.keys（））将失败。 而且，出乎意料
+        // 3.的是，ES2015和更新的功能（如Object.assign（）和对象rest / spread）将无法复制返回的属性。
+
+        // rectObject.top：元素上边到视窗上边的距离;
+        // rectObject.right：元素右边到视窗左边的距离;
+        // rectObject.bottom：元素下边到视窗上边的距离;
+        // rectObject.left：元素左边到视窗左边的距离;
+        // rectObject.width：是元素自身的宽度
+        // rectObject.height是元素自身的高度
+        
+    </script>
+</body>
+
+</html>

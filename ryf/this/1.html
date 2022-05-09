@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this底层原理</title>
+</head>
+<body>
+    <script>
+        let bar = 3
+        var obj = {
+            bar:2,
+            foo:function() {
+                console.log(this);
+            },
+            c:this.bar
+        }
+        // foo存储的是一个地址  指向函数所在的空间
+    let foo = obj.foo //变量foo的环境是在全局window中
+    obj.foo() //obj  
+    foo()//window 
+    console.log(bar);
+    console.log(c);//c is not defined
+    // 由于函数可以在不同的运行环境中执行，所以需要有一种机制，能够在函数体内部获得当前的运行环境(context)，所以this就出现了；
+    // 它的设计目的就是在函数体内部，指代函数当前的运行环境
+    </script>
+</body>
+</html>

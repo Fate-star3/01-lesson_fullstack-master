@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       
+    <meta charset="UTF-8">
+       
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+
+<body>
+       
+    <script>
+        let a = 1;
+        var c = 10
+        {
+            // 在这里存在暂时性死区
+            // let 在创建变量的时候存在变量提升，但在初始化过程中不存在提升，赋值过程更没有提升
+            // var 在创建变量和初始化过程中都存在变量提升，所以在 console.log(b) var b = 3;会输出undefined
+            // 函数在三个过程中都存在提升，最屌的
+            console.log(c);//10
+            console.log(a);//Cannot access 'a' before initialization 在初始化之前无法访问'a'
+            var c = 11
+            console.log(c);//11
+            var b = 3;
+            let a = 2;
+            const name = 'zs';
+            //当前作用域有a，就可以输出a
+            //当前作用域无d，继续往外查找       
+            console.log(name, a, d);
+        }
+
+    //1.全局作业域 window
+    //2.局部作用域 函数&块级作用域
+    </script>
+</body>
+
+</html>

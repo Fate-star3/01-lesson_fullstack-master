@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Update CSS Skills With<span class="hl">JS</span></h2>
+    <div class="contorls">
+        <div class="fields">
+            <label for="spacing">Spacing</label>
+            <!-- <input type="text" name="spacing" id="spacing" value="10"> -->
+            <input type="range" name="spacing" id="spacing" value="10" min="0" max="100" data-sizing="%" num='1'>
+            <span class="spacing_res">10%</span>
+        </div>
+        <div class="fields">
+            <label for="blur">Blur</label>
+            <!-- 输入控件  html5 更加强大的表单类型 -->
+            <input type="range" min="0" max="25" id="blur" name="blur" value="10" data-sizing="px"><span
+                id="blur__res">15px</span>
+        </div>
+        <div class="fields">
+            <label for="color">Base Color</label>
+            <!-- 输入控件  html5 更加强大的表单类型 -->
+            <input type="color" id="color" name="color" value="#ffc600"><span id="color__res">150</span>
+        </div>
+    </div>
+    <script>
+        let fields = document.querySelectorAll('.fields input') //获取一个数组
+        let inputSpacing = document.querySelector('#spacing')
+        let res = document.querySelector('.spacing_res')
+        // let inputBlur = document.querySelector('#blur')
+        // inputSpacing.addEventListener('change', function (e) {
+        //     console.log(this); //执行inputSpacing事件对象
+        //     console.log(e);//change 事件
+        //     console.log(e.target == this);//true
+        //     // js是事件驱动型语言
+        //     res.innerHTML = this.value + this.dataset.sizing
+
+        //     // H5新增的获取自定义属性的方法 只能用来获取data-开头的自定义属性名 在IE11以上有用
+        //     // dataset是一个集合里存放了所有以data开头的自定义属性
+        //     console.log(this.dataset); 
+        //     //专门用来获取自定义属性的方法
+        //     console.log(this.getAttribute('num'));
+
+
+        // }) 
+        // inputBlur.addEventListener('change',function (e) {
+
+        //    document.querySelector('#blur__res').innerHTML = this.value + this.dataset.sizing
+
+        // })
+        fields.forEach(function (ele, index, arr) {
+            ele.addEventListener('change', function (e) {
+                console.log(this);
+                this.nextElementSibling.innerHTML = this.value + (this.dataset.sizing ? this.dataset.sizing : '')
+                // 如果存在dataset.sizing属性，则输出原值，否则赋值为空
+            })
+        })
+    </script>
+</body>
+
+</html>

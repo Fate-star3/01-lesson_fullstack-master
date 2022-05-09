@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/login" method="post" name="loginForm">
+        <div>
+            <label for="phoneInput" >手机</label>
+            <!--  pattern是表单为了验证格式的属性 支持正则 -->
+            <input type="text" name="phone" id="phoneInput" placeholder="请输入手机" required pattern="/^[0-9]{11}$/">
+        </div>
+        <div>
+            <button type="submit">提交</button>
+        </div>
+    </form>
+    <script>
+            let forms = document.forms["loginForm"]
+            forms.addEventListener('submit',function(e) {
+                e.preventDefault()
+                let input = forms['phone'].value.trim()
+                console.log(input);
+                if(!input.length) {
+                    console.log('手机号不能为空');
+                }
+                if(/^[0-9]{11}/.test(input)) {
+                    console.log('输入合法的');
+                }
+                this.submit()//再次提交 跳转到login页面
+            })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+    <!-- 音频标签 -->
+    <audio src="./sounds/clap.wav" controls autoplay class="clap"></audio>
+    <audio src="./sounds/boom.wav" controls autoplay class="boom"></audio>
+    <audio src="./sounds/hihat.wav" controls autoplay class="hihat"></audio>
+    <audio src="./sounds/kick.wav" controls autoplay class="kick"></audio>
+    <audio src="./sounds/openhat.wav" controls autoplay class="openhat"></audio>
+    <audio src="./sounds/ride.wav" controls autoplay></audio>
+    <audio src="./sounds/snare.wav" controls autoplay></audio>
+    <audio src="./sounds/tink.wav" controls autoplay></audio>
+    <audio src="./sounds/tom.wav" controls autoplay></audio>
+
+    <div class="keys">
+        <div class="key" data-key="65">
+            <div>A</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>S</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>D</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>F</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>G</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>H</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>J</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>K</div>
+            <span class="sound">clap</span>
+        </div>
+        <div class="key">
+            <div>l</div>
+            <span class="sound">clap</span>
+        </div>
+    </div>
+    <script>
+
+        var divs = document.querySelectorAll('.key')
+        var clap = document.querySelector('.clap')
+        var boom = document.querySelector('.boom')
+        var hihat = document.querySelector('.hihat')
+        var kick = document.querySelector('.kick')
+        var openhat = document.querySelector('.openhat')
+        window.addEventListener('keydown', function (e) {
+
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].className = 'key'
+                if (e.keyCode == 65) {
+                    clap.play()
+                    divs[0].className = 'key playing'
+                } else if (e.key == 's') {
+                    boom.play()
+                    divs[1].className = 'key playing'
+                }
+                else if (e.key == 'd') {
+                    hihat.play()
+                    divs[2].className = 'key playing'
+                }
+                else if (e.key == 'f') {
+                    kick.play()
+                    divs[3].className = 'key playing'
+                }
+                else if (e.key == 'g') {
+                    openhat.play()
+                    divs[4].className = 'key playing'
+                }
+                else if (e.key == 'g') {
+                    boom.play()
+                }
+                else if (e.key == 'h') {
+                    boom.play()
+                }
+                else if (e.key == 'j') {
+                    boom.play()
+                }
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>

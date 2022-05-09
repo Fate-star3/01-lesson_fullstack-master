@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #cats li {
+            background-color: pink;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            color: white;
+            padding: 10px;
+        }
+
+        #cats li:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            right: 0;
+            /* width: 100%; */
+            height: 0.5px;
+            /*有点粗怎么办？0.5px*/
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="cats"></ul>
+    <script>
+        // 对象数组
+        const cats = [
+            {
+                name: 'Snickers',
+                age: 2
+            },
+            {
+                name: 'Hugo',
+                age: 1
+            },
+            {
+                name: 'Sunny',
+                age: 3
+            }
+        ];
+        // 相比于计数（面向机器）， 面向人类的编程， 可读性更好
+        const oUL = document.getElementById('cats');
+        //for...in 语句以任意顺序迭代对象的可枚举属性。
+        // for...of 语句遍历可迭代对象定义要迭代的数据。
+        // for  (let cat of cats) {
+        //     oUL.innerHTML += `
+        //         <li>
+        //             ${cat.name} --  ${cat.age}
+        //         </li>
+        //     `
+        // }
+        //将返回的HTML代码数组 先转换为字符串类型，然后赋值
+        // map() 方法创建一个新数组，这个新数组由原数组中的每个元素都调用一次提供的函数后的返回值组成。
+        oUL.innerHTML = cats.map(function (cat) {
+            return `
+                <li>
+                ${cat.name} --  ${cat.age}
+                </li>
+                `
+        }).join('')
+    </script>
+</body>
+
+</html>

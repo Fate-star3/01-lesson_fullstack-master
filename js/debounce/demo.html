@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="请输入搜索的内容" id="debounce" autofocus>
+    <script>
+        window.addEventListener('load', function () {
+            let t = 2000
+            let t1 = +new Date() //时间戳
+            let input = document.querySelector('#debounce')
+            // let ajax = (e) => {
+            //     let keyword = e.target.value
+            //     console.log(keyword);
+            //     let t2 = + new Date()
+            //     if (t2 - t1 > t) { //
+            //         console.log('------');
+            //     }
+            // }
+            // 回调函数
+            // 1.keyup事件 在一开始声明 放在事件池子里面 event loop
+            // 2.事件处理函数是爱事件发生时触发并执行的
+            // 3.异步任务 是在同步任务执行完毕后，在事件池执行异步任务
+            // 单位时间里如何减少执行次数
+
+            // 自动转变成整数类型
+            let ajax = (e) => {
+                console.log('搜索' + e.target.value);
+            }
+            let debounce = (cb, t) => {
+                // console.log(cb);
+                return cb
+            //    return (e) => {
+            //     console.log('搜索' + e.target.value);
+            // }
+            }
+            const debounceAjax = debounce(ajax, t);
+            // 点击一下 触发事件处理函数
+            input.addEventListener('keyup', debounceAjax);
+            // input.addEventListener('keyup', ajax)
+
+        })
+    </script>
+</body>
+
+</html>

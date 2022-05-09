@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步之数据传递</title>
+</head>
+<body>
+    <div class="posts">
+    </div>
+    <script>
+        // 异步任务顺序不确定
+        //   fetch('http://localhost:3000/posts')
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        // fetch('http://localhost:3001/user')
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        
+        // 由异步变为同步
+        //     let posts = []
+        //     let users = []
+        // fetch('http://localhost:3000/posts')
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         posts = [...data]
+        //             fetch('http://localhost:3001/user')
+        //                 .then(data => data.json())
+        //                 .then(data => {
+        //                     users = [...data]
+        //                     console.log(posts,users,'---------');
+        //             })
+        //     })
+        
+            // 封装函数
+            function ajax(url,callback) {
+                const xhr = new XMLHttpRequest()
+                xhr.open('GET',url,true)
+                xhr.send()
+                 xhr.addEventListener('readystatechange',function(e) {
+                    if (e.target.readyState == 4) {
+                        let data = JSON.parse(e.target.responseText)
+                        console.log(data);
+                        callback()
+                    }
+                })
+            }
+            // 使用回调函数的技巧，实现异步任务嵌套，异步任务同步化，控制代码的执行流程
+            ajax("http://localhost:3000/posts",() => {
+                ajax("http://localhost:3001/user",() => {
+                    console.log('program is over');
+                })
+            })
+           
+
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('GET',"http://localhost:3000/user")
+        // xhr.send()//发送请求
+        // xhr.addEventListener('readystatechange',function(e) {
+        //     // console.log(e);
+        //     if (e.target.readyState == 4) {
+        //         console.log(e.target.responseText);//得到的是字符串类型的数据
+        //         // console.log(Array.from(e.target.responseText));
+        //         document.querySelector('.posts').innerHTML = 
+        //         // 使用JSON方法将字符串类型的数据转换为对象类型的
+        //            JSON.parse(e.target.responseText).map((element) => {
+        //                 return `<li>${element.id}</li><li>${element.title}</li><li>${element.author}</li>`
+        //             })
+                
+        //     }
+        // })
+        
+
+
+        // 异步任务
+        // fetch('http://localhost:3000/posts')
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        //     console.log('---------');//同步任务先执行
+    </script>
+</body>
+</html>

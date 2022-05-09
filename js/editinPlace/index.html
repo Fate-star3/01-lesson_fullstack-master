@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* #content { */
+
+        /* 不显示，但仍然占据文档流 */
+        /* visibility: hidden; */
+
+        /* display: none; 让文档脱离文档流 */
+
+        /* position: absolute;
+        left: -100%; */
+
+        /* transform属性需要父盒子要有宽高 */
+        /* display: inline-block;
+        transform: scale(0); */
+
+        /* 会占据文档流 */
+        /* opacity: 0;  */
+        /* float: left;
+        width: 100px;
+        height: 100px; */
+    /* } */
+
+    /* .sos {
+        position: relative;
+        display: block;
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+        background-color: pink;
+    } */
+</style>
+
+<body>
+    <div id="app">
+        <div id="ep1">
+            <span id="content">彪悍的人生不需要解释</span>
+            <!-- <span class="sos"></span> -->
+            <input type="text" id="input" value="彪悍的人生不需要解释" />
+            <input type="button" id="save" value="Save">
+            <input type="button" id="cancel" value="Cancel">
+        </div>
+    </div>
+    <script>
+        // 面对对象
+        function EditInPlace () {
+            // 把 dom元素当做属性
+            this.save = document.getElementById('save');
+            this.cancel = document.getElementById('cancel');
+            this.input = document.getElementById('input');
+            this.content = document.getElementById('content')
+            // this.bindEvents
+        }
+
+        // 在原型上code方法
+        EditInPlace.prototype = {
+            construcrtor:EditInPlace,
+            convertToText() {
+            this.save.style.display = 'none';
+            this.cancel.style.display = 'none';
+            this.input.style.display = 'none';
+        },
+        convertToEdit() {
+            this.content.style.display = 'none'; //inline也会使元素显现
+            this.save.style.display =   'inline';
+            this.input.style.display =  'inline';
+            this.cancel.style.display = 'inline';
+        },
+        bindEvents() {
+            let that = this
+            // 在这里也可以使用箭头函数 或者用call() bind() 方法
+            this.content.addEventListener('dblclick',function() {
+                that.convertToEdit()
+                that.input.focus()
+            })
+            this.save.addEventListener('click',function() {
+                     that.convertToText()                   
+                     that.content.innerHTML = that.input.value
+                     that.content.style.display = 'inline';
+            })
+            this.cancel.addEventListener('click',function() {
+                // that.convertToEdit()
+                that.input.style.display =   'none';
+                that.content.style.display = 'inline';
+                that.save.style.display =  'none';
+                that.cancel.style.display = 'none';
+            })
+        }
+
+        }
+        let a = new EditInPlace()
+        window.addEventListener('load',function() {
+            a.convertToText()
+            a.bindEvents()
+        })
+        // js 来切换现实/隐藏
+        // const save = document.getElementById('save');
+        // const cancel = document.getElementById('cancel');
+        // const input = document.getElementById('input');
+        // const content = document.getElementById('content')
+
+        // // DOM  动态样式
+        // function convertToText() {
+        //     save.style.display = 'none';
+        //     cancel.style.display = 'none';
+        //     input.style.display = 'none';
+        // }
+        // convertToText()
+
+        // function convertToEdit() {
+        //     content.style.display = 'none'; //inline也会使元素显现
+        //     save.style.display =   'inline';
+        //     input.style.display =  'inline';
+        //     cancel.style.display = 'inline';
+        // }
+        // // 双击事件dblclick
+        // content.addEventListener('dblclick',function() {
+        //     convertToEdit()
+        //     input.focus()
+        // })
+        // // 函数式编程 函数封装 具有复用性
+        // save.addEventListener('click',function() {
+        //     convertToText()
+           
+        //     content.innerHTML = input.value
+        //     content.style.display = 'inline';
+        // })
+        // cancel.addEventListener('click',function() {
+
+        // })
+        // setTimeout(() => {
+        //     content.style.display = 'inline'; //inline也会使元素显现
+        //     save.style.display = 'block';
+        //     input.style.display = 'block';
+        //     cancel.style.display = 'block';
+        // }, 3000)
+    </script>
+</body>
+
+</html>

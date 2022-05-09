@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            /* display: flex; */
+        }
+
+        .aside,
+        .main {
+            height: 500px;
+        }
+
+        .aside {
+            float: left;
+            width: 300px;
+            background-color: pink;
+        }
+
+        .main {
+            /* flex: 1; */
+            overflow: hidden;
+            /* margin-right: 300px; */
+            /* float: left;
+            width: calc(100% - 300px); */
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 设计一套布局 两列式布局 aside固定宽度 main分配剩余空间  -->
+    <!-- 1.用flex布局 -->
+    <div class="container">
+        <aside class="aside"></aside>
+        <main class="main"></main>
+    </div>
+</body>
+
+</html>
