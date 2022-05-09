@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP状态码</title>
+    <link rel="stylesheet" href="./flex.css">
+</head>
+<body>
+    <div class="page">
+        <div class="page__hd">
+            <div class="page__title">Flex</div>
+            <div class="page__desc">Flex布局</div>
+        </div>
+        <!-- BEM -->
+        <div class="page__bd page__bd_spacing">
+            <!-- weui 项目前缀, 弹性布局组件, 新一轮的BEM  -->
+            <div class="weui-flex">
+                <div class="weui-flex_item">
+                    <div class="palceholder">weui</div>
+                </div>
+            </div>
+            <div class="weui-flex">
+                <div class="weui-flex_item">
+                    <div class="palceholder">weui</div>
+                </div>
+                <div class="weui-flex_item">
+                    <div class="palceholder">weui</div>
+                </div>
+            </div>
+            <div class="weui-flex">
+                <div class="weui-flex_item">
+                    <div class="palceholder">weui</div>
+                </div>
+                <div class="weui-flex_item">
+                    <div class="palceholder">weui</div>
+                </div>
+                <div class="weui-flex_item">
+                    <div class="palceholder">weui</div>
+                </div>
+            </div>
+            <div class="page__ft">
+                 <!-- 行内样式，不要这么些，优先级更高 -->
+                <a href="javascript:home()" style="color:aqua">
+                    <!-- img标签，也发出http请求 
+                        127.0.0.1 IP
+                        png属于微信的
+                        可以给我们用，
+                        也可以不给， 403 Forbidden
+                        保护自己站点的资源， 减少一些无效的请求
+                        需要保存到本地
+                    -->
+                    home
+                    <img src="http://weui.io/images/icon_footer_link.png" alt="">
+                    <!-- 通过网址可以访问到，但在自己的本地(http://127.0.0.1:5500/css/flex_demo/index.html)会返回403状态码，表示没有权限访问资源 -->
+                    
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // typeof  不靠谱 
+        // js 函数是一等对象  
+        function home(){
+            // 通过js 跳转 /home 页面？
+            // window 全局对象
+            // location 属于BOM对象  html 标签 DOM对象
+            // Browser 浏览器
+            window.location.href='/home';
+        }
+        console.log(typeof home) // function
+    </script>
+</body>
+</html>

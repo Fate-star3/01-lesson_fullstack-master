@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout {
+            color: #fff;
+            padding: 0 100px;
+            min-width: 500px;
+        }
+
+        h4 {
+            position: relative;
+            color: #333;
+            margin: 20px 0 10px;
+        }
+
+        h4:before {
+            content: '#';
+            position: absolute;
+            left: -20px;
+            top: -1px;
+            font-size: 18px;
+            color: #38ab89;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        main {
+            height: 100px;
+            
+        }
+
+        aside {
+            height: 50px;
+        }
+        /* 
+            网格布局
+            块级与行内元素  标准的文档流布局 使用块级元素从上到下+行内(行内从左到右) 自然的填满页面
+            行内布局中 span等行内元素难堪大任
+            块级元素怎么来到行内的呢 完成列布局的使命呢
+            关键在于 display  比如 inline inline-block   flex  grid  
+         */
+        .grid {
+            /* 网格布局 */
+            display: grid;
+            grid-template-columns: 150px auto 150px;
+        }
+        .w150 {
+            width: 150px;
+        }
+        .flex {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+        }
+        .flex main {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- css 布局 三列式布局 
+        div  块级 row 
+        span i  行内 ? BFC IFC FFC....
+    -->
+    <div class="layout">
+        <h4>方法四:flex布局 布局都和display相关 标签的显示方案和计算规则</h4>
+        <!-- html5 语义化标签 侧边栏 -->
+        <section class="flex">
+            <aside class="w150 orange">aside</aside>
+            <main class="green">main</main>
+            <aside class="w150 orange">aside</aside>
+        </section>
+        <h4>方法五:grid布局 flex布局之后的新的布局方案</h4>
+        <section class="grid">
+            <aside class="orange">aside</aside>
+            <main class="green">main</main>
+            <aside class="orange">aside</aside>
+        </section>
+    </div>
+</body>
+
+</html>

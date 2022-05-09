@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            padding: 10px;
+            border: 3px solid #000 ;
+        }
+        .div2 { 
+            border: 3px solid red;
+            /* overflow: hidden; */
+        }
+        .div2 img{
+            /* position: absolute; */
+            float: left;
+            padding: 10px;
+        }
+        .div2:after{
+            content: "12222"; /*  行内元素会受float元素影响 */
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <img src="https://ts1.cn.mm.bing.net/th?id=OIP-C.eehA_GCDhJ0vQbFuAk9CtQDOEs&w=197&h=286&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2" alt="">
+    </div> 
+    <div class="div2">
+        <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.K5RTiTzeGa61qMpurEzU1wHaJ9?w=182&h=245&c=7&r=0&o=5&dpr=1.25&pid=1.7" alt="">
+    </div> 
+</body>
+</html>

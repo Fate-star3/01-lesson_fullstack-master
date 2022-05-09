@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            display: flex;
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: green;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .planet {
+            /* 找到理他最近的position属性不为static元素定位 */
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            /* transform: scaleY(0.5) rotate(45deg) ; */
+            animation: planet-rotate 20s linear infinite;
+        }
+
+        .ball {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: calc(50% - 25px);
+            border-radius: 50%;
+            background-color: yellowgreen;
+            /* transform:rotate(-45deg) scaleY(2) ; */
+            animation: self-rotate 20s linear infinite;
+        }
+        @keyframes planet-rotate {
+            from {
+                transform: rotate(45deg) scaleY(0.5) rotate(0);
+            }
+
+            to {
+                transform: rotate(45deg) scaleY(0.5) rotate(360deg);
+            }
+        }
+        /* @keyframes self-rotate {
+            from {
+                transform: rotate(0) scaleY(2) ;
+            }
+
+            to {
+                transform:  rotate(-360deg) scaleY(0.2);
+            }
+        } */
+        /* 小球的动画要与轨道的相反 因为轨道运动了会带着小球运动  所以要让小球回归自身原本位置 */
+        @keyframes self-rotate {
+        0% {
+            transform: rotate(0) scaleY(2) rotate(-45deg); 
+        }
+        100% {
+            transform: rotate(-360deg) scaleY(2) rotate(-45deg); 
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="planet">
+            <div class="ball">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

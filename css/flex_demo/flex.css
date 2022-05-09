@@ -1,0 +1,88 @@
+/* 外联样式 */
+* {
+    margin:0;
+    padding:0;
+    /* outline:10px solid green; */
+}
+/* css4 变量 */
+:root {
+    --weui-FG-1:rgba(255, 255, 255, 0.5);
+    --weui-BG-0: #111;
+    --weui-BG-1:#1e1e1e;
+}
+body, html {
+    height: 100%;
+}
+body {
+    /* 手机网页 apple-system */
+    /* css 继承 */
+    font-family: -apple-system-font, sans-serif;
+    background-color: var(--weui-BG-0);
+    color: rgba(255, 255, 255, 0.8);
+}
+.page {
+    position: absolute;/*格式化上下文, 绝对定位, 脱离了文档流 */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* 宽高和屏幕一样大 */
+    overflow-y: auto;/* 内部滚动 */
+    -webkit-overflow-scrolling: touch;/* 让滚动比较丝滑 */
+}
+.page__hd {
+    height: 200vh;/* 相对于viewport单位, 视窗 撑开了page__hd容器*/
+}
+
+.page__desc {
+    margin-top: 4px;
+    color: var(--weui-FG-1);
+    text-align: center;
+    font-size: 14px;
+}
+/* .page__bd {
+    margin: 7px;
+    padding: 5px;
+    text-align: center;
+} */
+
+.page__bd_spacing {
+    padding: 0 6px;
+}
+.page__ft {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.page__ft img {
+    height: 19px;
+    filter: invert(100) hue-rotate(170deg);
+}
+/* css 格式上下文的概念 */
+.weui-flex {
+    /* -webkit 用于解决兼容性问题 
+        flex 实验室阶段 W3C
+        chrome 先支持 -webkit-flex
+        -webkit 前缀
+    */
+    display: -webkit-box;/* flex 前身 */
+    display: -ms-flex;/* 兼容IE浏览器 */
+    display: -webkit-flex;/* chrome */
+    display: flex;
+}
+.weui-flex_item {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+
+}
+.weui-flex_item .palceholder {
+    text-align: center;
+    margin: 4px;
+    padding: 0 10px;
+    background-color: var(--weui-BG-1);
+    height: 2.3em;/* em是相对父元素字体大小 */
+    line-height: 2.3;
+    color: var(--weui-FG-1);
+}
